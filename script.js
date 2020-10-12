@@ -1,24 +1,21 @@
-const menuOpenEvent = () => {
-  const menu = document.getElementById("menu-icon");
+const createMenu = (menuOpenIconId, menuCloseIconId, menuItemsClass) => {
+  const menu = document.getElementById(menuOpenIconId);
+  // menu open event
   menu.addEventListener("click", () => {
-    document.querySelectorAll(".li").forEach((element) => {
+    document.querySelectorAll(menuItemsClass).forEach((element) => {
       element.classList.remove("hide");
     });
-    document.querySelector("#menu-hide-icon").classList.remove("hide");
+    document.getElementById(menuCloseIconId).classList.remove("hide");
     menu.classList.add("hide");
   });
-};
-
-const menuCloseEvent = () => {
-  const menu = document.getElementById("menu-icon");
-  document.querySelector("#menu-hide-icon").addEventListener("click", () => {
-    document.querySelectorAll(".li").forEach((element) => {
+  // menu close event
+  document.getElementById(menuCloseIconId).addEventListener("click", () => {
+    document.querySelectorAll(menuItemsClass).forEach((element) => {
       element.classList.add("hide");
     });
-    document.querySelector("#menu-hide-icon").classList.add("hide");
+    document.getElementById(menuCloseIconId).classList.add("hide");
     menu.classList.remove("hide");
   });
 };
 
-menuOpenEvent();
-menuCloseEvent();
+createMenu("menu-icon", "menu-hide-icon", ".menu-items1");
